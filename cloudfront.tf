@@ -11,6 +11,8 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     }
   }
 
+  aliases = var.aliases
+
   enabled             = true
   default_root_object = "index.html"
   price_class         = var.price_class
