@@ -50,6 +50,7 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     for_each = var.custom_viewer_certificate ? [1] : []
     content {
       acm_certificate_arn = var.acm_certificate_arn
+      ssl_support_method  = "sni-only"
     }
   }
 
