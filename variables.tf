@@ -13,7 +13,7 @@ variable "aliases" {
 
 variable "viewer_cert" {
   description = "should we enable the viewer cert block?"
-  default     = 0
+  default     = false
 }
 
 variable "acm_cert_arn" {
