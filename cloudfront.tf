@@ -44,6 +44,13 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     }
   }
 
+  dynamic "viewer_certificate" {
+    for_each = var.viewer_cert ? [1] : []
+    content {
+      acm_certificate_arn = var.acm_cert_arn
+    }
+  }
+
   ordered_cache_behavior {
     path_pattern = "/catalogs/*"
 

@@ -8,7 +8,16 @@ variable "password" {
 
 variable "aliases" {
   description = "SANS for cloudfront"
-  default = []
+  default     = []
+}
+
+variable "viewer_cert" {
+  description = "should we enable the viewer cert block?"
+  default     = 0
+}
+
+variable "acm_cert_arn" {
+  description = "arn of the acm certificate"
 }
 
 variable "munki_s3_bucket" {
