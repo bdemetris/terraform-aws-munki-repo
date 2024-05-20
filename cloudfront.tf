@@ -51,6 +51,13 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     }
   }
 
+  dynamic "viewer_certificate" {
+    for_each = var.viewer_cert ? [] : [1]
+    content {
+      cloudfront_default_certificate = true
+    }
+  }
+
   ordered_cache_behavior {
     path_pattern = "/catalogs/*"
 
@@ -133,10 +140,6 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     geo_restriction {
       restriction_type = "none"
     }
-  }
-
-  viewer_certificate {
-    cloudfront_default_certificate = true
   }
 }
 
