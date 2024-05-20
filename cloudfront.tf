@@ -44,15 +44,18 @@ resource "aws_cloudfront_distribution" "www_distribution" {
     }
   }
 
+  # if true enable the custom certificate block. currently only supports acm
+  # if additional blocks need support the conditional would need to be broken out.
   dynamic "viewer_certificate" {
-    for_each = var.viewer_cert ? [1] : []
+    for_each = var.custom_viewer_certificate ? [1] : []
     content {
-      acm_certificate_arn = var.acm_cert_arn
+      acm_certificate_arn = var.acm_certificate_arn
     }
   }
 
+  # if not using custom viewer certificate - apply the default viewer
   dynamic "viewer_certificate" {
-    for_each = var.viewer_cert ? [] : [1]
+    for_each = var.custom_viewer_certificate ? [] : [1]
     content {
       cloudfront_default_certificate = true
     }

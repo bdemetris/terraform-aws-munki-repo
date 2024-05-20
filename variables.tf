@@ -11,12 +11,12 @@ variable "aliases" {
   default     = []
 }
 
-variable "viewer_cert" {
-  description = "should we enable the viewer cert block?"
+variable "custom_viewer_certificate" {
+  description = "should we enable the custom viewer certificate block?"
   default     = false
 }
 
-variable "acm_cert_arn" {
+variable "acm_certificate_arn" {
   description = "arn of the acm certificate"
 }
 
